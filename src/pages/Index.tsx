@@ -110,30 +110,86 @@ const Index = () => {
         {/* Generator Section */}
         <div className="grid lg:grid-cols-2 gap-12 mb-20">
           {/* Input Section */}
-          <Card className="p-8 shadow-lg border-0 bg-white/80 backdrop-blur-sm">
-            <CardContent className="space-y-6 p-0">
-              <div className="space-y-2">
-                <Label htmlFor="dataInput" className="text-lg font-semibold text-slate-900">
-                  Введите данные для кодирования
-                </Label>
-                <Input
-                  id="dataInput"
-                  type="text"
-                  placeholder="Например: https://example.com или любой текст"
-                  value={inputText}
-                  onChange={(e) => setInputText(e.target.value)}
-                  className="h-12 text-base border-2 focus:border-primary"
-                />
+          <Card className="p-0 shadow-2xl border-0 bg-gradient-to-br from-white via-blue-50/30 to-purple-50/20 backdrop-blur-sm overflow-hidden group hover:shadow-3xl transition-all duration-500">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <CardContent className="relative p-8 space-y-8">
+              <div className="text-center mb-6">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mb-4 shadow-lg">
+                  <Icon name="Type" size={28} className="text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-slate-900 mb-2">Создание кода</h3>
+                <p className="text-slate-600">Введите данные для генерации DataMatrix</p>
+              </div>
+
+              <div className="space-y-4">
+                <div className="relative">
+                  <Label htmlFor="dataInput" className="text-sm font-medium text-slate-700 mb-2 block">
+                    Данные для кодирования
+                  </Label>
+                  <div className="relative group/input">
+                    <Input
+                      id="dataInput"
+                      type="text"
+                      placeholder="https://example.com, текст, номер товара..."
+                      value={inputText}
+                      onChange={(e) => setInputText(e.target.value)}
+                      className="h-14 text-base border-2 border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 rounded-xl bg-white pl-12 pr-4 transition-all duration-300 placeholder:text-slate-400"
+                    />
+                    <Icon name="Edit3" size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within/input:text-blue-500 transition-colors" />
+                    {inputText && (
+                      <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
+                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        <span className="text-xs text-green-600 font-medium">{inputText.length} символов</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-3 gap-2 text-xs text-slate-500">
+                  <button 
+                    onClick={() => setInputText('https://example.com')}
+                    className="p-2 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors text-center"
+                  >
+                    <Icon name="Globe" size={14} className="mx-auto mb-1" />
+                    URL
+                  </button>
+                  <button 
+                    onClick={() => setInputText('SKU: 12345')}
+                    className="p-2 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors text-center"
+                  >
+                    <Icon name="Package" size={14} className="mx-auto mb-1" />
+                    Товар
+                  </button>
+                  <button 
+                    onClick={() => setInputText('+7 (999) 123-45-67')}
+                    className="p-2 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors text-center"
+                  >
+                    <Icon name="Phone" size={14} className="mx-auto mb-1" />
+                    Телефон
+                  </button>
+                </div>
               </div>
               
               <Button 
                 onClick={generateDataMatrix}
-                className="w-full h-12 text-base font-semibold"
+                className="w-full h-14 text-base font-semibold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 border-0 shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl relative overflow-hidden group/btn"
                 disabled={!inputText.trim()}
               >
-                <Icon name="QrCode" className="mr-2" size={20} />
+                <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-1000 skew-x-12"></div>
+                <Icon name="Sparkles" className="mr-3" size={20} />
                 Создать DataMatrix код
+                <Icon name="ArrowRight" className="ml-3 group-hover/btn:translate-x-1 transition-transform" size={20} />
               </Button>
+
+              {inputText.trim() && (
+                <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-xl">
+                  <div className="flex items-center gap-2 text-sm text-blue-700">
+                    <Icon name="Info" size={16} />
+                    <span className="font-medium">Предпросмотр данных:</span>
+                  </div>
+                  <p className="mt-1 text-blue-800 font-mono text-sm break-all">{inputText}</p>
+                </div>
+              )}
             </CardContent>
           </Card>
 
