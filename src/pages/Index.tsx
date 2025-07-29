@@ -21,19 +21,19 @@ const Index = () => {
         data: "",
         image: "",
         dotsOptions: {
-          color: "#000000",
-          type: "square"
+          color: "#1e40af",
+          type: "rounded"
         },
         cornersSquareOptions: {
-          color: "#000000",
-          type: "square"
+          color: "#3b82f6",
+          type: "extra-rounded"
         },
         cornersDotOptions: {
-          color: "#000000",
-          type: "square"
+          color: "#60a5fa",
+          type: "dot"
         },
         backgroundOptions: {
-          color: "#ffffff",
+          color: "transparent",
         }
       });
     }
@@ -45,10 +45,7 @@ const Index = () => {
         data: inputText
       });
       
-      // Очищаем предыдущий код
       qrCodeRef.current.innerHTML = '';
-      
-      // Добавляем новый код
       qrCodeInstance.current.append(qrCodeRef.current);
       setGeneratedCode(inputText);
     }
@@ -66,178 +63,216 @@ const Index = () => {
     }
   };
 
+  // Генерация плавающих частиц
+  useEffect(() => {
+    const particles = document.querySelector('.particles');
+    if (!particles) return;
+
+    const createParticle = () => {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.animationDelay = Math.random() * 15 + 's';
+      particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+      particles.appendChild(particle);
+
+      setTimeout(() => {
+        particle.remove();
+      }, 20000);
+    };
+
+    const interval = setInterval(createParticle, 500);
+    return () => clearInterval(interval);
+  }, []);
+
   const steps = [
     {
       number: '01',
       title: 'Считать код',
       description: 'Введите текст или данные для кодирования в DataMatrix формат',
       icon: 'Type',
-      color: 'text-blue-600'
+      gradient: 'from-blue-500 to-cyan-400'
     },
     {
       number: '02', 
       title: 'Распечатать код',
       description: 'Скачайте готовый DataMatrix код и распечатайте его',
       icon: 'Printer',
-      color: 'text-purple-600'
+      gradient: 'from-purple-500 to-pink-400'
     },
     {
       number: '03',
       title: 'Наклеить на упаковку',
       description: 'Прикрепите код на товар или упаковку для идентификации',
       icon: 'Package',
-      color: 'text-green-600'
+      gradient: 'from-emerald-500 to-teal-400'
     }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="min-h-screen relative liquid-bg">
+      {/* Floating particles */}
+      <div className="particles"></div>
+      
+      {/* Background orbs */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-3/4 right-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '4s'}}></div>
+      </div>
+
       {/* Header */}
-      <header className="container mx-auto px-6 py-8">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-slate-900 mb-4">
-            DataMatrix 
-            <span className="text-primary"> Генератор</span>
-          </h1>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-            Создавайте DataMatrix коды быстро и легко. Введите текст, получите код, распечатайте и используйте.
-          </p>
+      <header className="container mx-auto px-6 py-16 relative z-10">
+        <div className="text-center mb-20">
+          <div className="inline-block p-8 glass rounded-3xl mb-8 glow-hover">
+            <h1 className="text-6xl font-black text-white mb-4 text-glow">
+              DataMatrix 
+              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"> Генератор</span>
+            </h1>
+            <p className="text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
+              Создавайте DataMatrix коды в стиле будущего. Красиво, быстро, технологично.
+            </p>
+          </div>
+          
+          {/* Floating elements */}
+          <div className="absolute top-20 left-10 w-6 h-6 bg-blue-400/40 rounded-full animate-bounce"></div>
+          <div className="absolute top-32 right-16 w-4 h-4 bg-purple-400/40 rounded-full animate-bounce" style={{animationDelay: '1s'}}></div>
+          <div className="absolute top-48 left-1/3 w-5 h-5 bg-cyan-400/40 rounded-full animate-bounce" style={{animationDelay: '2s'}}></div>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-6 pb-16">
+      <main className="container mx-auto px-6 pb-20 relative z-10">
         {/* Generator Section */}
-        <div className="grid lg:grid-cols-2 gap-12 mb-20">
+        <div className="grid lg:grid-cols-2 gap-12 mb-24">
           {/* Input Section */}
-          <Card className="p-0 shadow-2xl border-0 bg-gradient-to-br from-white via-blue-50/30 to-purple-50/20 backdrop-blur-sm overflow-hidden group hover:shadow-3xl transition-all duration-500">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <CardContent className="relative p-8 space-y-8">
-              <div className="text-center mb-6">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mb-4 shadow-lg">
-                  <Icon name="Type" size={28} className="text-white" />
-                </div>
-                <h3 className="text-2xl font-bold text-slate-900 mb-2">Создание кода</h3>
-                <p className="text-slate-600">Введите данные для генерации DataMatrix</p>
+          <div className="glass rounded-3xl p-8 glow-hover transform hover:scale-[1.02] transition-all duration-500">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mb-6 shadow-lg animate-pulse">
+                <Icon name="Sparkles" size={32} className="text-white" />
               </div>
+              <h3 className="text-3xl font-bold text-white mb-3 text-glow">Создание кода</h3>
+              <p className="text-white/70 text-lg">Введите данные для генерации</p>
+            </div>
 
-              <div className="space-y-4">
-                <div className="relative">
-                  <Label htmlFor="dataInput" className="text-sm font-medium text-slate-700 mb-2 block">
-                    Данные для кодирования
-                  </Label>
-                  <div className="relative group/input">
-                    <Input
-                      id="dataInput"
-                      type="text"
-                      placeholder="https://example.com, текст, номер товара..."
-                      value={inputText}
-                      onChange={(e) => setInputText(e.target.value)}
-                      className="h-14 text-base border-2 border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 rounded-xl bg-white pl-12 pr-4 transition-all duration-300 placeholder:text-slate-400"
-                    />
-                    <Icon name="Edit3" size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within/input:text-blue-500 transition-colors" />
-                    {inputText && (
-                      <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
-                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                        <span className="text-xs text-green-600 font-medium">{inputText.length} символов</span>
-                      </div>
-                    )}
-                  </div>
-                </div>
-                
-                <div className="grid grid-cols-3 gap-2 text-xs text-slate-500">
-                  <button 
-                    onClick={() => setInputText('https://example.com')}
-                    className="p-2 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors text-center"
-                  >
-                    <Icon name="Globe" size={14} className="mx-auto mb-1" />
-                    URL
-                  </button>
-                  <button 
-                    onClick={() => setInputText('SKU: 12345')}
-                    className="p-2 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors text-center"
-                  >
-                    <Icon name="Package" size={14} className="mx-auto mb-1" />
-                    Товар
-                  </button>
-                  <button 
-                    onClick={() => setInputText('+7 (999) 123-45-67')}
-                    className="p-2 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors text-center"
-                  >
-                    <Icon name="Phone" size={14} className="mx-auto mb-1" />
-                    Телефон
-                  </button>
-                </div>
-              </div>
-              
-              <Button 
-                onClick={generateDataMatrix}
-                className="w-full h-14 text-base font-semibold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 border-0 shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl relative overflow-hidden group/btn"
-                disabled={!inputText.trim()}
-              >
-                <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-1000 skew-x-12"></div>
-                <Icon name="Sparkles" className="mr-3" size={20} />
-                Создать DataMatrix код
-                <Icon name="ArrowRight" className="ml-3 group-hover/btn:translate-x-1 transition-transform" size={20} />
-              </Button>
-
-              {inputText.trim() && (
-                <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-xl">
-                  <div className="flex items-center gap-2 text-sm text-blue-700">
-                    <Icon name="Info" size={16} />
-                    <span className="font-medium">Предпросмотр данных:</span>
-                  </div>
-                  <p className="mt-1 text-blue-800 font-mono text-sm break-all">{inputText}</p>
-                </div>
-              )}
-            </CardContent>
-          </Card>
-
-          {/* Preview Section */}
-          <Card className="p-8 shadow-lg border-0 bg-white/80 backdrop-blur-sm">
-            <CardContent className="space-y-6 p-0">
-              <div className="text-center">
-                <Label className="text-lg font-semibold text-slate-900 block mb-4">
-                  Предварительный просмотр
+            <div className="space-y-6">
+              <div className="relative group">
+                <Label className="text-white/90 font-medium mb-3 block text-lg">
+                  Данные для кодирования
                 </Label>
-                <div className="w-48 h-48 mx-auto bg-gradient-to-br from-slate-100 to-slate-200 rounded-lg flex items-center justify-center border-2 border-dashed border-slate-300">
-                  {generatedCode ? (
-                    <div className="text-center">
-                      <div ref={qrCodeRef} className="mx-auto mb-3 rounded flex items-center justify-center"></div>
-                      <p className="text-sm text-slate-600">DataMatrix код готов</p>
-                    </div>
-                  ) : (
-                    <div className="text-center text-slate-500">
-                      <Icon name="QrCode" size={48} className="mx-auto mb-2 opacity-50" />
-                      <p>Код появится здесь</p>
+                <div className="relative">
+                  <Input
+                    type="text"
+                    placeholder="https://example.com, текст, номер товара..."
+                    value={inputText}
+                    onChange={(e) => setInputText(e.target.value)}
+                    className="h-16 text-lg glass border-white/20 focus:border-blue-400 focus:ring-4 focus:ring-blue-500/30 rounded-2xl text-white placeholder:text-white/50 pl-14 pr-4 transition-all duration-300"
+                  />
+                  <Icon name="Edit3" size={24} className="absolute left-5 top-1/2 -translate-y-1/2 text-white/50 group-focus-within:text-blue-400 transition-colors" />
+                  {inputText && (
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-3">
+                      <div className="w-3 h-3 bg-emerald-400 rounded-full animate-pulse shadow-lg shadow-emerald-400/50"></div>
+                      <span className="text-sm text-emerald-400 font-semibold">{inputText.length}</span>
                     </div>
                   )}
                 </div>
               </div>
               
+              <div className="grid grid-cols-3 gap-3">
+                {[
+                  { icon: 'Globe', text: 'URL', value: 'https://example.com' },
+                  { icon: 'Package', text: 'Товар', value: 'SKU: 12345' },
+                  { icon: 'Phone', text: 'Телефон', value: '+7 (999) 123-45-67' }
+                ].map((template, idx) => (
+                  <button 
+                    key={idx}
+                    onClick={() => setInputText(template.value)}
+                    className="p-4 glass-dark hover:bg-white/20 rounded-xl transition-all duration-300 text-center group hover:scale-105"
+                  >
+                    <Icon name={template.icon as any} size={18} className="mx-auto mb-2 text-white/70 group-hover:text-blue-400 transition-colors" />
+                    <span className="text-xs text-white/70 group-hover:text-white transition-colors font-medium">{template.text}</span>
+                  </button>
+                ))}
+              </div>
+              
+              <Button 
+                onClick={generateDataMatrix}
+                disabled={!inputText.trim()}
+                className="w-full h-16 text-lg font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 hover:from-blue-700 hover:via-purple-700 hover:to-cyan-700 border-0 rounded-2xl shadow-2xl shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-500 relative overflow-hidden group disabled:opacity-50"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <Icon name="Zap" className="mr-3 animate-pulse" size={24} />
+                Создать код
+                <Icon name="ArrowRight" className="ml-3 group-hover:translate-x-2 transition-transform duration-300" size={24} />
+              </Button>
+
+              {inputText.trim() && (
+                <div className="glass-dark rounded-2xl p-6 animate-fade-in">
+                  <div className="flex items-center gap-3 mb-3">
+                    <Icon name="Eye" size={20} className="text-blue-400" />
+                    <span className="text-white font-semibold">Предпросмотр данных</span>
+                  </div>
+                  <p className="text-white/80 font-mono text-sm break-all bg-black/20 p-3 rounded-lg">{inputText}</p>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Preview Section */}
+          <div className="glass rounded-3xl p-8 glow-hover transform hover:scale-[1.02] transition-all duration-500">
+            <div className="text-center">
+              <h3 className="text-3xl font-bold text-white mb-8 text-glow">Предварительный просмотр</h3>
+              
+              <div className="relative">
+                <div className="w-64 h-64 mx-auto glass-dark rounded-3xl flex items-center justify-center border border-white/20 relative overflow-hidden">
+                  {generatedCode ? (
+                    <div className="text-center animate-scale-in">
+                      <div ref={qrCodeRef} className="mx-auto mb-4 p-4 bg-white rounded-2xl"></div>
+                      <p className="text-emerald-400 font-semibold animate-pulse">✨ Код готов</p>
+                    </div>
+                  ) : (
+                    <div className="text-center text-white/50">
+                      <div className="w-20 h-20 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-4 animate-pulse">
+                        <Icon name="QrCode" size={40} />
+                      </div>
+                      <p className="text-lg">Код появится здесь</p>
+                    </div>
+                  )}
+                  
+                  {/* Animated border */}
+                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-cyan-500/20 animate-pulse opacity-50"></div>
+                </div>
+              </div>
+              
               {generatedCode && (
-                <div className="space-y-3">
-                  <Button variant="outline" className="w-full" onClick={downloadPNG}>
-                    <Icon name="Download" className="mr-2" size={16} />
+                <div className="space-y-4 mt-8 animate-fade-in">
+                  <Button 
+                    onClick={downloadPNG}
+                    className="w-full h-12 glass-dark hover:bg-white/20 border-white/20 text-white rounded-xl transition-all duration-300 hover:scale-105"
+                  >
+                    <Icon name="Download" className="mr-2" size={18} />
                     Скачать PNG
                   </Button>
-                  <Button variant="outline" className="w-full" onClick={downloadSVG}>
-                    <Icon name="FileImage" className="mr-2" size={16} />
+                  <Button 
+                    onClick={downloadSVG}
+                    className="w-full h-12 glass-dark hover:bg-white/20 border-white/20 text-white rounded-xl transition-all duration-300 hover:scale-105"
+                  >
+                    <Icon name="FileImage" className="mr-2" size={18} />
                     Скачать SVG
                   </Button>
                 </div>
               )}
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </div>
 
         {/* Steps Section */}
-        <section className="mb-16">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">
+        <section className="mb-20">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-black text-white mb-6 text-glow">
               Как это работает
             </h2>
-            <p className="text-lg text-slate-600">
+            <p className="text-xl text-white/80 max-w-2xl mx-auto">
               Простой процесс из трёх шагов для создания и использования DataMatrix кодов
             </p>
           </div>
@@ -245,58 +280,63 @@ const Index = () => {
           <div className="grid md:grid-cols-3 gap-8">
             {steps.map((step, index) => (
               <div key={index} className="text-center group">
-                <div className="relative mb-6">
-                  <div className="w-20 h-20 mx-auto rounded-full bg-white shadow-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Icon name={step.icon as any} size={32} className={step.color} />
+                <div className="glass rounded-3xl p-8 glow-hover hover:scale-105 transition-all duration-500 relative overflow-hidden">
+                  <div className="relative z-10">
+                    <div className="relative mb-8">
+                      <div className={`w-24 h-24 mx-auto rounded-full bg-gradient-to-br ${step.gradient} shadow-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500 relative`}>
+                        <Icon name={step.icon as any} size={36} className="text-white" />
+                        <div className="absolute inset-0 rounded-full bg-white/20 animate-pulse"></div>
+                      </div>
+                      <div className="absolute -top-3 -right-3 w-10 h-10 bg-white text-black rounded-full flex items-center justify-center text-sm font-black shadow-lg">
+                        {step.number}
+                      </div>
+                    </div>
+                    <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-glow transition-all duration-300">
+                      {step.title}
+                    </h3>
+                    <p className="text-white/70 leading-relaxed text-lg">
+                      {step.description}
+                    </p>
                   </div>
-                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">
-                    {step.number}
-                  </div>
+                  
+                  {/* Animated background */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${step.gradient} opacity-5 group-hover:opacity-10 transition-opacity duration-500`}></div>
                 </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-3">
-                  {step.title}
-                </h3>
-                <p className="text-slate-600 leading-relaxed">
-                  {step.description}
-                </p>
               </div>
             ))}
           </div>
         </section>
 
         {/* Features Section */}
-        <section className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <Card className="p-6 text-center border-0 bg-white/60 backdrop-blur-sm hover:bg-white/80 transition-colors">
-            <Icon name="Zap" size={32} className="text-yellow-500 mx-auto mb-3" />
-            <h3 className="font-semibold text-slate-900 mb-2">Быстро</h3>
-            <p className="text-sm text-slate-600">Мгновенная генерация кодов</p>
-          </Card>
-          
-          <Card className="p-6 text-center border-0 bg-white/60 backdrop-blur-sm hover:bg-white/80 transition-colors">
-            <Icon name="Shield" size={32} className="text-green-500 mx-auto mb-3" />
-            <h3 className="font-semibold text-slate-900 mb-2">Надёжно</h3>
-            <p className="text-sm text-slate-600">Стандартная технология DataMatrix</p>
-          </Card>
-          
-          <Card className="p-6 text-center border-0 bg-white/60 backdrop-blur-sm hover:bg-white/80 transition-colors">
-            <Icon name="Download" size={32} className="text-blue-500 mx-auto mb-3" />
-            <h3 className="font-semibold text-slate-900 mb-2">Экспорт</h3>
-            <p className="text-sm text-slate-600">Форматы PNG и SVG</p>
-          </Card>
-          
-          <Card className="p-6 text-center border-0 bg-white/60 backdrop-blur-sm hover:bg-white/80 transition-colors">
-            <Icon name="Smartphone" size={32} className="text-purple-500 mx-auto mb-3" />
-            <h3 className="font-semibold text-slate-900 mb-2">Мобильно</h3>
-            <p className="text-sm text-slate-600">Работает на всех устройствах</p>
-          </Card>
+        <section className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+          {[
+            { icon: 'Zap', title: 'Молниеносно', desc: 'Мгновенная генерация', color: 'from-yellow-400 to-orange-500' },
+            { icon: 'Shield', title: 'Надёжно', desc: 'Стандарт DataMatrix', color: 'from-emerald-400 to-teal-500' },
+            { icon: 'Download', title: 'Экспорт', desc: 'PNG и SVG форматы', color: 'from-blue-400 to-cyan-500' },
+            { icon: 'Smartphone', title: 'Везде', desc: 'Любые устройства', color: 'from-purple-400 to-pink-500' }
+          ].map((feature, idx) => (
+            <div key={idx} className="glass rounded-2xl p-6 text-center glow-hover hover:scale-105 transition-all duration-500 group">
+              <div className={`w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br ${feature.color} flex items-center justify-center shadow-lg group-hover:animate-pulse`}>
+                <Icon name={feature.icon as any} size={28} className="text-white" />
+              </div>
+              <h3 className="font-bold text-white mb-2 text-lg group-hover:text-glow">{feature.title}</h3>
+              <p className="text-white/70 text-sm">{feature.desc}</p>
+            </div>
+          ))}
         </section>
       </main>
 
       {/* Footer */}
-      <footer className="bg-slate-900 text-white py-8 mt-16">
+      <footer className="glass-dark py-12 mt-20 relative z-10">
         <div className="container mx-auto px-6 text-center">
-          <p className="text-slate-400">
-            © 2024 DataMatrix Генератор. Создано с ❤️ для упрощения маркировки.
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+              <Icon name="Code" size={20} className="text-white" />
+            </div>
+            <span className="text-2xl font-bold text-white">DataMatrix Pro</span>
+          </div>
+          <p className="text-white/60 text-lg">
+            © 2024 DataMatrix Генератор. Создано с 💙 для упрощения маркировки.
           </p>
         </div>
       </footer>
