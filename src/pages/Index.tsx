@@ -114,57 +114,50 @@ const Index = () => {
       {/* Floating particles */}
       <div className="particles"></div>
       
-      {/* Pearl background orbs */}
+      {/* Background orbs */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-blue-200/20 to-indigo-300/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute top-3/4 right-1/4 w-80 h-80 bg-gradient-to-br from-purple-200/20 to-pink-300/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-br from-cyan-200/20 to-teal-300/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '4s'}}></div>
-        <div className="absolute top-1/3 right-1/3 w-72 h-72 bg-gradient-to-br from-rose-200/15 to-orange-300/15 rounded-full blur-3xl animate-pulse" style={{animationDelay: '6s'}}></div>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-3/4 right-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '4s'}}></div>
       </div>
 
       {/* Header */}
-      <header className="container mx-auto px-6 py-20 relative z-10">
-        <div className="text-center mb-24">
-          <div className="glass rounded-[2rem] p-12 mb-12 glow-hover pearl-shimmer">
-            <div className="mb-8">
-              <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-indigo-500 via-purple-500 to-cyan-500 rounded-2xl mb-6 shadow-2xl pearl-shimmer">
-                <Icon name="Sparkles" size={32} className="text-white" />
-              </div>
-            </div>
-            <h1 className="text-7xl font-black text-pearl mb-6">
+      <header className="container mx-auto px-6 py-16 relative z-10">
+        <div className="text-center mb-20">
+          <div className="inline-block p-8 glass rounded-3xl mb-8 glow-hover">
+            <h1 className="text-6xl font-black text-white mb-4 text-glow">
               DataMatrix 
-              <span className="text-gradient block mt-2"> Генератор</span>
+              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"> Генератор</span>
             </h1>
-            <p className="text-2xl text-slate-600/80 max-w-3xl mx-auto leading-relaxed">
-              Создавайте DataMatrix коды в элегантном стиле жемчужного стекла. 
-              Красота технологий будущего.
+            <p className="text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
+              Создавайте DataMatrix коды в стиле будущего. Красиво, быстро, технологично.
             </p>
           </div>
           
           {/* Floating elements */}
-          <div className="absolute top-24 left-16 w-8 h-8 glass rounded-full animate-bounce opacity-60"></div>
-          <div className="absolute top-36 right-20 w-6 h-6 glass rounded-full animate-bounce opacity-40" style={{animationDelay: '1s'}}></div>
-          <div className="absolute top-52 left-1/3 w-7 h-7 glass rounded-full animate-bounce opacity-50" style={{animationDelay: '2s'}}></div>
+          <div className="absolute top-20 left-10 w-6 h-6 bg-blue-400/40 rounded-full animate-bounce"></div>
+          <div className="absolute top-32 right-16 w-4 h-4 bg-purple-400/40 rounded-full animate-bounce" style={{animationDelay: '1s'}}></div>
+          <div className="absolute top-48 left-1/3 w-5 h-5 bg-cyan-400/40 rounded-full animate-bounce" style={{animationDelay: '2s'}}></div>
         </div>
       </header>
 
       {/* Main Content */}
       <main className="container mx-auto px-6 pb-20 relative z-10">
         {/* Generator Section */}
-        <div className="grid lg:grid-cols-2 gap-16 mb-32">
+        <div className="grid lg:grid-cols-2 gap-12 mb-24">
           {/* Input Section */}
-          <div className="glass rounded-[2rem] p-10 glow-hover transform hover:scale-[1.02] transition-all duration-700 pearl-shimmer">
-            <div className="text-center mb-10">
-              <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-indigo-500 via-purple-500 to-cyan-500 rounded-2xl mb-8 shadow-2xl animate-pulse pearl-shimmer">
-                <Icon name="Wand2" size={36} className="text-white" />
+          <div className="glass rounded-3xl p-8 glow-hover transform hover:scale-[1.02] transition-all duration-500">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mb-6 shadow-lg animate-pulse">
+                <Icon name="Sparkles" size={32} className="text-white" />
               </div>
-              <h3 className="text-4xl font-bold text-pearl mb-4">Создание кода</h3>
-              <p className="text-slate-600/70 text-xl">Введите данные для генерации</p>
+              <h3 className="text-3xl font-bold text-white mb-3 text-glow">Создание кода</h3>
+              <p className="text-white/70 text-lg">Введите данные для генерации</p>
             </div>
 
-            <div className="space-y-8">
+            <div className="space-y-6">
               <div className="relative group">
-                <Label className="text-slate-700/90 font-semibold mb-4 block text-xl">
+                <Label className="text-white/90 font-medium mb-3 block text-lg">
                   Данные для кодирования
                 </Label>
                 <div className="relative">
@@ -173,33 +166,31 @@ const Index = () => {
                     placeholder="https://example.com, текст, номер товара..."
                     value={inputText}
                     onChange={(e) => setInputText(e.target.value)}
-                    className="h-18 text-xl glass-medium border-white/40 focus:border-indigo-400/60 focus:ring-4 focus:ring-indigo-500/20 rounded-2xl text-slate-700 placeholder:text-slate-500/60 pl-16 pr-6 transition-all duration-500"
+                    className="h-16 text-lg glass border-white/20 focus:border-blue-400 focus:ring-4 focus:ring-blue-500/30 rounded-2xl text-white placeholder:text-white/50 pl-14 pr-4 transition-all duration-300"
                   />
-                  <Icon name="Feather" size={28} className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-500/60 group-focus-within:text-indigo-500 transition-colors duration-300" />
+                  <Icon name="Edit3" size={24} className="absolute left-5 top-1/2 -translate-y-1/2 text-white/50 group-focus-within:text-blue-400 transition-colors" />
                   {inputText && (
-                    <div className="absolute right-6 top-1/2 -translate-y-1/2 flex items-center gap-4">
-                      <div className="w-4 h-4 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-full animate-pulse shadow-lg"></div>
-                      <span className="text-sm text-emerald-600 font-bold bg-emerald-50 px-3 py-1 rounded-full">{inputText.length}</span>
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-3">
+                      <div className="w-3 h-3 bg-emerald-400 rounded-full animate-pulse shadow-lg shadow-emerald-400/50"></div>
+                      <span className="text-sm text-emerald-400 font-semibold">{inputText.length}</span>
                     </div>
                   )}
                 </div>
               </div>
               
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-3 gap-3">
                 {[
-                  { icon: 'Globe', text: 'URL', value: 'https://example.com', color: 'from-blue-400 to-cyan-400' },
-                  { icon: 'Package', text: 'Товар', value: 'SKU: 12345', color: 'from-purple-400 to-pink-400' },
-                  { icon: 'Phone', text: 'Телефон', value: '+7 (999) 123-45-67', color: 'from-emerald-400 to-teal-400' }
+                  { icon: 'Globe', text: 'URL', value: 'https://example.com' },
+                  { icon: 'Package', text: 'Товар', value: 'SKU: 12345' },
+                  { icon: 'Phone', text: 'Телефон', value: '+7 (999) 123-45-67' }
                 ].map((template, idx) => (
                   <button 
                     key={idx}
                     onClick={() => setInputText(template.value)}
-                    className="p-5 glass-medium hover:glass rounded-2xl transition-all duration-500 text-center group hover:scale-105 pearl-shimmer"
+                    className="p-4 glass-dark hover:bg-white/20 rounded-xl transition-all duration-300 text-center group hover:scale-105"
                   >
-                    <div className={`w-10 h-10 mx-auto mb-3 rounded-xl bg-gradient-to-br ${template.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                      <Icon name={template.icon as any} size={20} className="text-white" />
-                    </div>
-                    <span className="text-sm text-slate-600 group-hover:text-slate-800 transition-colors font-semibold">{template.text}</span>
+                    <Icon name={template.icon as any} size={18} className="mx-auto mb-2 text-white/70 group-hover:text-blue-400 transition-colors" />
+                    <span className="text-xs text-white/70 group-hover:text-white transition-colors font-medium">{template.text}</span>
                   </button>
                 ))}
               </div>
@@ -207,67 +198,66 @@ const Index = () => {
               <Button 
                 onClick={generateDataMatrix}
                 disabled={!inputText.trim()}
-                className="w-full h-18 text-xl font-bold bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-600 hover:from-indigo-700 hover:via-purple-700 hover:to-cyan-700 border-0 rounded-2xl shadow-2xl hover:shadow-indigo-500/25 transition-all duration-700 relative overflow-hidden group disabled:opacity-50 disabled:cursor-not-allowed pearl-shimmer"
+                className="w-full h-16 text-lg font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 hover:from-blue-700 hover:via-purple-700 hover:to-cyan-700 border-0 rounded-2xl shadow-2xl shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-500 relative overflow-hidden group disabled:opacity-50"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                <Icon name="Sparkles" className="mr-4 animate-pulse" size={28} />
+                <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <Icon name="Zap" className="mr-3 animate-pulse" size={24} />
                 Создать код
-                <Icon name="ArrowRight" className="ml-4 group-hover:translate-x-3 transition-transform duration-500" size={28} />
+                <Icon name="ArrowRight" className="ml-3 group-hover:translate-x-2 transition-transform duration-300" size={24} />
               </Button>
 
               {inputText.trim() && (
-                <div className="glass-medium rounded-2xl p-8 animate-fade-in pearl-shimmer">
-                  <div className="flex items-center gap-4 mb-4">
-                    <Icon name="Eye" size={24} className="text-indigo-500" />
-                    <span className="text-slate-700 font-bold text-lg">Предпросмотр данных</span>
+                <div className="glass-dark rounded-2xl p-6 animate-fade-in">
+                  <div className="flex items-center gap-3 mb-3">
+                    <Icon name="Eye" size={20} className="text-blue-400" />
+                    <span className="text-white font-semibold">Предпросмотр данных</span>
                   </div>
-                  <p className="text-slate-600 font-mono text-base break-all bg-slate-100/50 p-4 rounded-xl border border-slate-200/50">{inputText}</p>
+                  <p className="text-white/80 font-mono text-sm break-all bg-black/20 p-3 rounded-lg">{inputText}</p>
                 </div>
               )}
             </div>
           </div>
 
           {/* Preview Section */}
-          <div className="glass rounded-[2rem] p-10 glow-hover transform hover:scale-[1.02] transition-all duration-700 pearl-shimmer">
+          <div className="glass rounded-3xl p-8 glow-hover transform hover:scale-[1.02] transition-all duration-500">
             <div className="text-center">
-              <h3 className="text-4xl font-bold text-pearl mb-10">Предварительный просмотр</h3>
+              <h3 className="text-3xl font-bold text-white mb-8 text-glow">Предварительный просмотр</h3>
               
               <div className="relative">
-                <div className="w-80 h-80 mx-auto glass-medium rounded-[2rem] flex items-center justify-center border border-white/40 relative overflow-hidden pearl-shimmer">
+                <div className="w-64 h-64 mx-auto glass-dark rounded-3xl flex items-center justify-center border border-white/20 relative overflow-hidden">
                   {generatedCode ? (
                     <div className="text-center animate-scale-in">
-                      <div ref={qrCodeRef} className="mx-auto mb-6 p-6 bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl"></div>
-                      <div className="flex items-center justify-center gap-3">
-                        <div className="w-3 h-3 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-full animate-pulse shadow-lg"></div>
-                        <p className="text-emerald-600 font-bold text-lg">Код готов</p>
-                        <Icon name="CheckCircle" size={20} className="text-emerald-500" />
-                      </div>
+                      <div ref={qrCodeRef} className="mx-auto mb-4 p-4 bg-white rounded-2xl"></div>
+                      <p className="text-emerald-400 font-semibold animate-pulse">✨ Код готов</p>
                     </div>
                   ) : (
-                    <div className="text-center text-slate-500/70">
-                      <div className="w-24 h-24 bg-slate-200/50 rounded-2xl flex items-center justify-center mx-auto mb-6 animate-pulse">
-                        <Icon name="QrCode" size={48} className="text-slate-400/70" />
+                    <div className="text-center text-white/50">
+                      <div className="w-20 h-20 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-4 animate-pulse">
+                        <Icon name="QrCode" size={40} />
                       </div>
-                      <p className="text-xl font-medium">Код появится здесь</p>
+                      <p className="text-lg">Код появится здесь</p>
                     </div>
                   )}
+                  
+                  {/* Animated border */}
+                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-cyan-500/20 animate-pulse opacity-50"></div>
                 </div>
               </div>
               
               {generatedCode && (
-                <div className="space-y-5 mt-10 animate-fade-in">
+                <div className="space-y-4 mt-8 animate-fade-in">
                   <Button 
                     onClick={downloadPNG}
-                    className="w-full h-14 glass-medium hover:glass border-white/40 text-slate-700 hover:text-slate-900 rounded-2xl transition-all duration-500 hover:scale-105 font-semibold text-lg"
+                    className="w-full h-12 glass-dark hover:bg-white/20 border-white/20 text-white rounded-xl transition-all duration-300 hover:scale-105"
                   >
-                    <Icon name="Download" className="mr-3" size={22} />
+                    <Icon name="Download" className="mr-2" size={18} />
                     Скачать PNG
                   </Button>
                   <Button 
                     onClick={downloadSVG}
-                    className="w-full h-14 glass-medium hover:glass border-white/40 text-slate-700 hover:text-slate-900 rounded-2xl transition-all duration-500 hover:scale-105 font-semibold text-lg"
+                    className="w-full h-12 glass-dark hover:bg-white/20 border-white/20 text-white rounded-xl transition-all duration-300 hover:scale-105"
                   >
-                    <Icon name="FileImage" className="mr-3" size={22} />
+                    <Icon name="FileImage" className="mr-2" size={18} />
                     Скачать SVG
                   </Button>
                 </div>
@@ -278,12 +268,12 @@ const Index = () => {
 
         {/* Steps Section */}
         <section className="mb-20">
-          <div className="text-center mb-20">
-            <h2 className="text-6xl font-black text-pearl mb-8">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-black text-white mb-6 text-glow">
               Как это работает
             </h2>
-            <p className="text-2xl text-slate-600/80 max-w-3xl mx-auto leading-relaxed">
-              Элегантный процесс из трёх шагов для создания и использования DataMatrix кодов
+            <p className="text-xl text-white/80 max-w-2xl mx-auto">
+              Простой процесс из трёх шагов для создания и использования DataMatrix кодов
             </p>
           </div>
 
